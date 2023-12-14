@@ -1,0 +1,45 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 86400 #一天 单位s
+    context-path: /api   #后台统一前缀 , http://localhost:8080/api
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.200.88.100:3306/usercenter?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: usercenter
+    password: 123456
+
+mybatis-plus:
+  #加载 mapper.xml文件所存放的位置
+  #配置Mapper映射文件这个配置的含义是，Spring 框架会在类路径中的 mapper 目录下递归搜索所有以 Mapper.xml 结尾的文件，
+  #并将它们用作 MyBatis 或其他 ORM 框架中的 Mapper XML 文件。
+  mapper-locations: classpath:mapper/*.xml
+  #简化xml文件中resultType (不配置就要书写包名+类名)
+  #表示实体类所在文件目录 , 配置后在XML文件书写SQl(select)时配置的ResultType就可以直接写类名
+  type-aliases-package: com.lanyx.model
+
+  configuration:
+    #驼峰映射 , 数据库一般都带下划线 , 而Java一般都是驼峰命名 , 可通过ResultMap来进行两者的映射
+    #或者开启此选项 , 会将Java的驼峰命名变为下划线类型对应到数据库的字段  UserName --->user_name
+    map-underscore-to-camel-case: false
+   #关闭启动日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config: #mybatisPlus全局配置逻辑删除功能 , 配置查询数据时发现isDelete为1 , 就视为已删除 , 该条数据不返回到结果集中
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以不加@TableLogic注解)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+    banner: true #启动Logo
+
+
+#关闭SpringBoot自动配置类的匹配情况
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: error

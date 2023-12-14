@@ -1,0 +1,14 @@
+com\lanyx\service\UserService.class
+com\lanyx\model\UserRegisterRequest.class
+com\lanyx\common\StatusCode.class
+com\lanyx\exception\BusinessException.class
+com\lanyx\UserCenterApplication.class
+com\lanyx\constant\UserConstant.class
+com\lanyx\exception\GlobalExceptionHandler.class
+com\lanyx\controller\UserController.class
+com\lanyx\model\UserLoginRequest.class
+com\lanyx\model\User$UserBuilder.class
+com\lanyx\service\impl\UserServiceImpl.class
+com\lanyx\model\User.class
+com\lanyx\mapper\UserMapper.class
+com\lanyx\common\BaseResponse.class
